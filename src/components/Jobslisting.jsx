@@ -1,5 +1,6 @@
 import React from 'react'
 import Onejob from './onejob'
+import Spinner from './Spinner'
 import { useState, useEffect } from 'react'
 const Jobslisting = ({isHome=false}) => {
   const [jobs,setJob]= useState([]);
@@ -31,19 +32,19 @@ const Jobslisting = ({isHome=false}) => {
         <h2 className="text-3xl font-bold text-indigo-500 mb-6 text-center">
           Browse Jobs
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {loading?( <h2>loading....</h2> 
+        
+            {loading?( <Spinner loading ={loading}/> 
             ):
             (
-              <>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {
                 jobs.map((job)=>(
                   <Onejob key={job.id} job={job}/>
               
             ))}
-          </>
+          </div>
             )}
-        </div>
+        
       </div>
     </section>
   )
